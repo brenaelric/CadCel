@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "contatos.h"
+#include "celular.h"
 
 char menu()
 {
@@ -10,9 +10,9 @@ char menu()
     printf("  1 - INSERIR celular\n");
     printf("  2 - REMOVER celular\n");
     printf("  3 - ALTERAR celular\n");
-    printf("  4 - MOSTRAR contatos pela preco\n");
-    printf("  5 - MOSTRAR contatos pela marca\n");
-    printf("  6 - MOSTRAR contatos pelo processador\n");
+    printf("  4 - MOSTRAR celular pela preco\n");
+    printf("  5 - MOSTRAR celular pela marca\n");
+    printf("  6 - MOSTRAR celular pelo processador\n");
     printf("  7 - BUSCAR celular pela marca\n");
     printf("  8 - BUSCAR celular pela geracao\n");
     printf("\n  0 - SAIR do aplicativo\n");
@@ -88,7 +88,7 @@ int main ()
             }
             op2 = 'A';
             break;
-            
+
         case '2':
             fflush(stdin);
             printf("\n\n  **** REMOVER CELULAR ****\n");
@@ -110,8 +110,10 @@ int main ()
             break;
 
       case '3':
-
-
+          fflush(stdin);
+          printf("\n\n  **** ALTERAR CELULAR ****\n");
+          alterarCelular(&liscon);
+          break;
       case '4':
           qsort(liscel.celulares,liscel.nco,sizeof(TContato),ordenaPreco);
           mostralistaCelular(&liscel);

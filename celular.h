@@ -5,6 +5,7 @@
 
 struct celular
 {
+    int chave;
     char marca[50];
     char modelo[20];
     char processador[20];
@@ -27,16 +28,17 @@ typedef struct listaCelular TlistaCelular;
 
 void mostreCelular(Tcelular cel)
 {
+    printf("Chave: %d \n", cel.chave);
     printf("Marca: %s \n", cel.marca);
     printf("Modelo: %s \n", cel.modelo);
-    printf ("Processador: %s \n", cel.processador);
-    printf ("Memoria:  %s \n", cel.memoria);
-    printf ("Tela: %s \n", cel.tela);
-    printf ("Camera Frontal: %s \n", cel.cameraF);
-    printf ("Camera Traseira: %s \n", cel.cameraT);
-    printf ("Geracao: %s \n", cel.geracao);
-    printf ("Sistema Operacional: %s \n", cel.OS);
-    printf ("Preco: %.2f", cel.preco);
+    printf("Processador: %s \n", cel.processador);
+    printf("Memoria:  %s \n", cel.memoria);
+    printf("Tela: %s \n", cel.tela);
+    printf("Camera Frontal: %s \n", cel.cameraF);
+    printf("Camera Traseira: %s \n", cel.cameraT);
+    printf("Geracao: %s \n", cel.geracao);
+    printf("Sistema Operacional: %s \n", cel.OS);
+    printf("Preco: %.2f \n", cel.preco);
 }
 
 void mostralistaCelular (TlistaCelular *lis)
@@ -45,7 +47,7 @@ void mostralistaCelular (TlistaCelular *lis)
     printf("\n\n  ----------- Lista de celulares ------------\n");
 
     for(i=0; i<lis->nco; i++) {
-        printf("  ");
+        printf("\n");
         mostreCelular(lis->celulares[i]);
         printf("\n");
     }
@@ -68,7 +70,7 @@ Tcelular removeCelular(TlistaCelular *lis, int ind)
     return res;
 }
 
-void alterarCelular()
+void alterarCelular(TlistaCelular *lis)
 {
   int num;
   int resp;
@@ -82,29 +84,86 @@ void alterarCelular()
   do
   {
     system ("cls");
+    printf("Modelo que deseja alterar: \n");
+    Tcelular cel;
+    gets(cel.modelo);
+    int i = buscaModelo(lis,cel);
+    if(i==-1){
+      printf("Celular nao encontado!\n");
+      return;
+    }
+    cel = lis->celulares[i];
+    mostreCelular(cel);
     printf ("\n\nEscolha a opcao que deseja modificar\n\n");
-    printf("Marca: \n");
-    printf("Modelo: \n");
-    printf ("Processador: \n");
-    printf ("Memoria: \n");
-    printf ("Tela: \n");
-    printf ("Camera Frontal: \n");
-    printf ("Camera Traseira: \n");
-    printf ("Geracao: \n");
-    printf ("Sistema Operacional: \n");
-    printf ("Preco: %.2f");
+    printf("  A - Marca: \n");
+    printf("  B - Modelo: \n");
+    printf("  C - Processador: \n");
+    printf("  D - Memoria: \n");
+    printf("  E - Tela: \n");
+    printf("  F - Camera Frontal: \n");
+    printf("  G - Camera Traseira: \n");
+    printf("  H - Geracao: \n");
+    printf("  I - Sistema Operacional: \n");
+    printf("  J - Preco: %.2f");
+    fflush(stdin);
+    resp = getchar();
 
     switch(resp){
-    case 1: nome();
+    case 'A':
+      printf("Nova marca: ");
+      gets(cel.marca);
+      return;
     break;
-    case 2: numAtomico();
+    case 'B':
+      printf("Novo modelo: ");
+      gets(cel.modelo);
+      return;
     break;
-    case 3: numMassa();
+    case 'C':
+      printf("Novo Processador: ");
+      gets(cel.processador);
+      return;
     break;
-    default: printf ("Numero invalido, digite novamente.\n\n");
+    case 'D':
+      printf("Nova memoria: ");
+      gets(cel.memoria);
+      return;
+    break;
+    case 'E':
+      printf("Nova tela: ");
+      gets(cel.tela);
+      return;
+    break;
+    case 'F':
+      printf("Nova camera frontal: ");
+      gets(cel.cameraF);
+      return;
+    break;
+    case 'G':
+      printf("Nova camera traseira: ");
+      gets(cel.cameraT);
+      return;
+    break;
+    case 'H':
+      printf("Nova geracao: ");
+      gets(cel.geracao);
+      return;
+    break;
+    case 'I':
+      printf("Novo sistema operacional: ");
+      gets(cel.OS);
+      return;
+    break;
+    case 'J':
+      printf("Novo preco: ");
+      gets(cel.preco);
+      return;
+    break;
+    default:
+      printf ("Opcao invalida, digite novamente.\n\n");
     }
-    system ("PAUSE");
-}while(resp<1||resp>3);
+  }
+  while(1);
 }
 
 int ordenaPreco(const void *a, const void *b)
