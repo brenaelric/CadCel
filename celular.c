@@ -48,11 +48,11 @@ int main ()
       {
           fflush(stdin);
           case '1':
-              printf("\n\n  ****INSERIR NOVO CELULAR****\n");
+              printf("\n\n  ****INSERIR NOVO CELULAR****\n\n");
               printf("  Modelo: ");
-              gets(cel.modelo);
+              scanf("%s", &cel.modelo);
               rb = buscaModelo(&liscel,cel);
-              if(rb >= 0)
+              if(rb = 0)
                   printf("\n  **** Celular já existe ****\n\n");
               else
               {
@@ -69,6 +69,12 @@ int main ()
                 gets(cel.cameraF);
                 printf("  Camera Traseira: ");
                 gets(cel.cameraT);
+                printf("  Geracao: ");
+                gets(cel.geracao);
+                printf("  Sistema Operacional: ");
+                gets(cel.OS);
+                printf("  Preco: ");
+                gets(cel.preco);
                 while(op2!='s' && op2!='S' && op2!='n' && op2!='N')
                 {
                     printf("\n  Salvar celular? (s/n): ");
@@ -120,6 +126,7 @@ int main ()
           break;
 
       case '5':
+          system ("cls");
           qsort(liscel.celulares,liscel.nco,sizeof(Tcelular),ordenaMarca);
           mostralistaCelular(&liscel);
           break;

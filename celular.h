@@ -15,7 +15,7 @@ struct celular
     char cameraT[20];
     char geracao[20];
     char OS[20];
-    float preco[20];
+    char preco[20];
 };
 typedef struct celular Tcelular;
 
@@ -38,7 +38,7 @@ void mostreCelular(Tcelular cel)
     printf("Camera Traseira: %s \n", cel.cameraT);
     printf("Geracao: %s \n", cel.geracao);
     printf("Sistema Operacional: %s \n", cel.OS);
-    printf("Preco: %.2f \n", cel.preco);
+    printf("Preco: %s \n", cel.preco);
 };
 
 void mostralistaCelular (TlistaCelular *lis)
@@ -76,15 +76,20 @@ void alterarCelular(TlistaCelular *lis)
   int resp;
   do
   {
-    system ("cls");
     printf("Modelo que deseja alterar: \n");
+
     Tcelular cel;
     gets(cel.modelo);
-    int i = buscaModelo(lis,cel);
-    if(i==-1){
+    int i = buscaModelo(&lis,cel);
+
+    if(i==-1)
+    {
       printf("Celular nao encontado!\n");
       return;
-    };
+    }
+
+    else
+    {
     cel = lis->celulares[i];
     mostreCelular(cel);
     printf ("\n\nEscolha a opcao que deseja modificar\n\n");
@@ -97,65 +102,58 @@ void alterarCelular(TlistaCelular *lis)
     printf("  G - Camera Traseira: \n");
     printf("  H - Geracao: \n");
     printf("  I - Sistema Operacional: \n");
-    printf("  J - Preco: %.2f");
+    printf("  J - Preco: \n");
+    printf("DIGITE SUA OPÇÃO: ");
     fflush(stdin);
     resp = getchar();
 
     switch(resp){
     case 'A':
-      printf("Nova marca: ");
+      printf("Nova marca: \n");
       gets(cel.marca);
-      return;
     break;
     case 'B':
-      printf("Novo modelo: ");
+      printf("Novo modelo: \n");
       gets(cel.modelo);
       return;
     break;
     case 'C':
-      printf("Novo Processador: ");
+      printf("Novo Processador: \n");
       gets(cel.processador);
-      return;
     break;
     case 'D':
-      printf("Nova memoria: ");
+      printf("Nova memoria: \n");
       gets(cel.memoria);
-      return;
     break;
     case 'E':
-      printf("Nova tela: ");
+      printf("Nova tela: \n");
       gets(cel.tela);
-      return;
     break;
     case 'F':
-      printf("Nova camera frontal: ");
+      printf("Nova camera frontal: \n");
       gets(cel.cameraF);
-      return;
     break;
     case 'G':
-      printf("Nova camera traseira: ");
+      printf("Nova camera traseira: \n");
       gets(cel.cameraT);
-      return;
     break;
     case 'H':
-      printf("Nova geracao: ");
+      printf("Nova geracao: \n");
       gets(cel.geracao);
-      return;
     break;
     case 'I':
-      printf("Novo sistema operacional: ");
+      printf("Novo sistema operacional: \n");
       gets(cel.OS);
-      return;
     break;
     case 'J':
-      printf("Novo preco: ");
+      printf("Novo preco: \n");
       gets(cel.preco);
-      return;
     break;
     default:
       printf ("Opcao invalida, digite novamente.\n\n");
     };
   }
+}
   while(1);
 };
 
