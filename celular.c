@@ -80,16 +80,15 @@ int main ()
                       insereCelular(&liscel,cel);
                       printf("\n\n  **** Celular Adicionado ****\n\n");
                     }
-                  }
                     else
-                        if(op2!='N' && op2!='n'):
-                          printf("\n\n  **** Pressione S ou N ****\n\n");
-                }
-            }
-            op2 = 'A';
-            break;
+                    if(op2!='N' && op2!='n')
+                    printf("\n\n  **** Pressione S ou N ****\n\n");
+                  }
+                  }
+                  op2 = 'A';
 
-        case '2':
+            break;
+            case '2':
             fflush(stdin);
             printf("\n\n  **** REMOVER CELULAR ****\n");
             printf("  Modelo: ");
@@ -101,9 +100,10 @@ int main ()
             {
                 printf("  Excluir %s? (S/N):  ",cel.marca);
                 op2 = getchar();
-                if(op2=='s' || op2=='S') {
-                    removeContato(&liscon,rb);
-                    alterado = 1;
+                if(op2=='s' || op2=='S')
+                {
+                  removeCelular(&liscel,rb);
+                  alterado = 1;
                 }
             }
             printf("\n\n");
@@ -112,20 +112,20 @@ int main ()
       case '3':
           fflush(stdin);
           printf("\n\n  **** ALTERAR CELULAR ****\n");
-          alterarCelular(&liscon);
+          alterarCelular(&liscel);
           break;
       case '4':
-          qsort(liscel.celulares,liscel.nco,sizeof(TContato),ordenaPreco);
+          qsort(liscel.celulares,liscel.nco,sizeof(Tcelular),ordenaPreco);
           mostralistaCelular(&liscel);
           break;
 
       case '5':
-          qsort(liscel.celulares,liscel.nco,sizeof(TContato),ordenaMarca);
+          qsort(liscel.celulares,liscel.nco,sizeof(Tcelular),ordenaMarca);
           mostralistaCelular(&liscel);
           break;
 
       case '6':
-          qsort(lisceln.celulares,liscel.nco,sizeof(TContato),ordenaProcessador);
+          qsort(liscel.celulares,liscel.nco,sizeof(Tcelular),ordenaProcessador);
           mostralistaCelular(&liscel);
           break;
 
@@ -140,7 +140,7 @@ int main ()
           else
           {
               printf("Celulares encontrado: \n");
-                     liscon.celulares[rb].marca
+                     liscel.celulares[rb].marca;
           }
           printf("\n\n");
           break;
@@ -156,9 +156,27 @@ int main ()
          else
          {
              printf("Celulares encontrado: \n");
-                    liscon.celulares[rb].geracao
+                    liscel.celulares[rb].geracao;
          }
          printf("\n\n");
          break;
+    }
   }
+
+  if(alterado)
+      {
+          printf("\n\n  Arquivo alterado. Deseja salvar as altera%c%ces? (S/N): ",135,228);
+          fflush(stdin);
+          op2 = getchar();
+          if(op2=='S' || op2=='s')
+          {
+              fp = fopen("Celulares.arq","wb");
+              fwrite(&liscel.nco,sizeof(unsigned),1,fp);
+              fwrite(liscel.celulares,sizeof(Tcelular),liscel.nco,fp);
+              fclose(fp);
+              printf("\n  **** O arquivo foi salvo ****\n");
+          }
+      }
+      printf("\n");
+      return 0;
 }

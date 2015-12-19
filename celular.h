@@ -9,21 +9,21 @@ struct celular
     char marca[50];
     char modelo[20];
     char processador[20];
-    char memória[20];
+    char memoria[20];
     char tela[20];
     char cameraF[20];
     char cameraT[20];
     char geracao[20];
     char OS[20];
     float preco[20];
-}
+};
 typedef struct celular Tcelular;
 
 struct listaCelular
 {
     unsigned nco;  // N�mero de celulares na lista
     Tcelular celulares[MAX];
-}
+};
 typedef struct listaCelular TlistaCelular;
 
 void mostreCelular(Tcelular cel)
@@ -39,7 +39,7 @@ void mostreCelular(Tcelular cel)
     printf("Geracao: %s \n", cel.geracao);
     printf("Sistema Operacional: %s \n", cel.OS);
     printf("Preco: %.2f \n", cel.preco);
-}
+};
 
 void mostralistaCelular (TlistaCelular *lis)
 {
@@ -50,15 +50,15 @@ void mostralistaCelular (TlistaCelular *lis)
         printf("\n");
         mostreCelular(lis->celulares[i]);
         printf("\n");
-    }
+    };
     printf("\n\n");
-}
+};
 
 void insereCelular(TlistaCelular *lis, Tcelular cel)
 {
     lis->celulares[lis->nco] = cel;
     lis->nco++;
-}
+};
 
 Tcelular removeCelular(TlistaCelular *lis, int ind)
 {
@@ -68,19 +68,12 @@ Tcelular removeCelular(TlistaCelular *lis, int ind)
         lis->celulares[i] = lis->celulares[i+1];
     lis->nco--;
     return res;
-}
+};
 
 void alterarCelular(TlistaCelular *lis)
 {
   int num;
   int resp;
-  arq=fopen("Celulares.arq","r+b");
-
-  if(arq==NULL)
-  {
-    printf ("Erro ao abrir o arquivo.\n");
-    return;
-  }
   do
   {
     system ("cls");
@@ -91,7 +84,7 @@ void alterarCelular(TlistaCelular *lis)
     if(i==-1){
       printf("Celular nao encontado!\n");
       return;
-    }
+    };
     cel = lis->celulares[i];
     mostreCelular(cel);
     printf ("\n\nEscolha a opcao que deseja modificar\n\n");
@@ -161,31 +154,31 @@ void alterarCelular(TlistaCelular *lis)
     break;
     default:
       printf ("Opcao invalida, digite novamente.\n\n");
-    }
+    };
   }
   while(1);
-}
+};
 
 int ordenaPreco(const void *a, const void *b)
 {
     Tcelular *ca = (Tcelular *) a;
     Tcelular *cb = (Tcelular *) b;
     return strcmp(ca->preco,cb->preco);
-}
+};
 
 int ordenaMarca(const void *a, const void *b)
 {
     Tcelular *ca = (Tcelular *) a;
     Tcelular *cb = (Tcelular *) b;
     return strcmp(ca->marca,cb->marca);
-}
+};
 
 int ordenaProcessador(const void *a, const void *b)
 {
     Tcelular *ca = (Tcelular *) a;
     Tcelular *cb = (Tcelular *) b;
     return strcmp(ca->processador,cb->processador);
-}
+};
 
 int buscaMarca(TlistaCelular *lis, Tcelular cel)
 {
@@ -194,7 +187,7 @@ int buscaMarca(TlistaCelular *lis, Tcelular cel)
         if(strcmp(cel.marca,lis->celulares[i].marca) == 0)
             return i;
     return -1;
-}
+};
 
 int buscaModelo(TlistaCelular *lis, Tcelular cel)
 {
@@ -203,7 +196,7 @@ int buscaModelo(TlistaCelular *lis, Tcelular cel)
         if(strcmp(cel.modelo,lis->celulares[i].modelo) == 0)
             return i;
     return -1;
-}
+};
 
 int buscaGeracao(TlistaCelular *lis, Tcelular cel)
 {
@@ -212,4 +205,4 @@ int buscaGeracao(TlistaCelular *lis, Tcelular cel)
         if(strcmp(cel.geracao,lis->celulares[i].geracao) == 0)
             return i;
     return -1;
-}
+};
