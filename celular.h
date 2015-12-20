@@ -79,7 +79,7 @@ void alterarCelular(TlistaCelular *lis)
     printf("Modelo que deseja alterar: \n");
 
     Tcelular cel;
-    gets(cel.modelo);
+    scanf("%s",cel.modelo);
     int i = buscaModelo(&lis,cel);
 
     if(i==-1)
@@ -110,44 +110,44 @@ void alterarCelular(TlistaCelular *lis)
     switch(resp){
     case 'A':
       printf("Nova marca: \n");
-      gets(cel.marca);
+      scanf("%s",cel.marca);
     break;
     case 'B':
       printf("Novo modelo: \n");
-      gets(cel.modelo);
+      scanf("%s",cel.modelo);
       return;
     break;
     case 'C':
       printf("Novo Processador: \n");
-      gets(cel.processador);
+      scanf("%s",cel.processador);
     break;
     case 'D':
       printf("Nova memoria: \n");
-      gets(cel.memoria);
+      scanf("%s",cel.memoria);
     break;
     case 'E':
       printf("Nova tela: \n");
-      gets(cel.tela);
+      scanf("%s",cel.tela);
     break;
     case 'F':
       printf("Nova camera frontal: \n");
-      gets(cel.cameraF);
+      scanf("%s",cel.cameraF);
     break;
     case 'G':
       printf("Nova camera traseira: \n");
-      gets(cel.cameraT);
+      scanf("%s",cel.cameraT);
     break;
     case 'H':
       printf("Nova geracao: \n");
-      gets(cel.geracao);
+      scanf("%s",cel.geracao);
     break;
     case 'I':
       printf("Novo sistema operacional: \n");
-      gets(cel.OS);
+      scanf("%s",cel.OS);
     break;
     case 'J':
       printf("Novo preco: \n");
-      gets(cel.preco);
+      scanf("%s",cel.preco);
     break;
     default:
       printf ("Opcao invalida, digite novamente.\n\n");
