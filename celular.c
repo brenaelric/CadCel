@@ -52,7 +52,7 @@ int main ()
               printf("  Modelo: ");
               scanf("%s", &cel.modelo);
               rb = buscaModelo(&liscel,cel);
-              if(rb = 0)
+              if(rb == 0)
                   printf("\n  **** Celular j%c existe ****\n\n", 160);
               else
               {
@@ -114,7 +114,6 @@ int main ()
             }
             printf("\n\n");
             break;
-
       case '3':
           fflush(stdin);
           printf("\n\n  **** ALTERAR CELULAR ****\n");
@@ -142,15 +141,17 @@ int main ()
           fflush(stdin);
           scanf("%s",cel.marca);
           rb = buscaMarca(&liscel,cel);
-          if(rb < 0)
-              printf("\n  **** Marca n%co existe ****\n",198);
-          else
-          {
-              printf("Celulares Encontrados: \n");
-                     liscel.celulares[rb].marca;
-          }
-          printf("\n\n");
+          if(rb==0)
+            printf("\n  **** Marca n%co encontrada ****\n",198);
           break;
+          // if(rb < 0)
+          // else
+          // {
+          //     printf("Celulares Encontrados: \n");
+          //            liscel.celulares[rb].marca;
+          // }
+          // printf("\n\n");
+          // break;
 
     case '8':
          printf("\n\n  **** BUSCAR Celular pela Gera%c%co ****\n", 135, 198);
@@ -158,14 +159,19 @@ int main ()
          fflush(stdin);
          scanf("%s",cel.geracao);
          rb = buscaGeracao(&liscel,cel);
-         if(rb < 0)
-             printf("\n  **** Gera%c%co N%co Existe ****\n", 135, 198, 198);
-         else
-         {
-             printf("Celulares Encontrados: \n");
-                    liscel.celulares[rb].geracao;
-         }
-         printf("\n\n");
+         if(rb==0)
+           printf("\n  **** Geracao n%co existe ****\n",198);
+         break;
+        //  rb =
+        //  if(rb < 0)
+        //      printf("\n  **** Gera%c%co N%co Existe ****\n", 135, 198, 198);
+        //  else
+        //  {
+        //      printf("Celulares Encontrados: \n");
+        //             liscel.celulares[rb].geracao;
+        //  }
+        //  printf("\n\n");
+        //
          break;
     }
   }

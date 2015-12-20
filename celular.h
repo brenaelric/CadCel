@@ -39,6 +39,7 @@ void mostreCelular(Tcelular cel)
     printf("Geracao: %s \n", cel.geracao);
     printf("Sistema Operacional: %s \n", cel.OS);
     printf("Preco: %s \n", cel.preco);
+    printf("\n");
 };
 
 void mostralistaCelular (TlistaCelular *lis)
@@ -72,22 +73,21 @@ Tcelular removeCelular(TlistaCelular *lis, int ind)
 
 void alterarCelular(TlistaCelular *lis)
 {
-  int num;
-  int resp;
+  //int num;
+  char resp;
   do
   {
     printf("Modelo que deseja alterar: \n");
 
     Tcelular cel;
     scanf("%s",cel.modelo);
-    int i = buscaModelo(&lis,cel);
+    int i = buscaModelo(lis,cel);
 
     if(i==-1)
     {
-      printf("Celular nao encontado!\n");
+      printf("Celular nao encontado!\n\n");
       return;
     }
-
     else
     {
     cel = lis->celulares[i];
@@ -152,6 +152,7 @@ void alterarCelular(TlistaCelular *lis)
     default:
       printf ("Opcao invalida, digite novamente.\n\n");
     };
+
   }
 }
   while(1);
@@ -178,29 +179,41 @@ int ordenaProcessador(const void *a, const void *b)
     return strcmp(ca->processador,cb->processador);
 };
 
-int buscaMarca(TlistaCelular *lis, Tcelular cel)
-{
-    int i;
-    for(i=0; i<lis->nco; i++)
-        if(strcmp(cel.marca,lis->celulares[i].marca) == 0)
-            return i;
-    return -1;
-};
-
 int buscaModelo(TlistaCelular *lis, Tcelular cel)
 {
     int i;
     for(i=0; i<lis->nco; i++)
-        if(strcmp(cel.modelo,lis->celulares[i].modelo) == 0)
-            return i;
+      if(strcmp(cel.modelo,lis->celulares[i].modelo) == 0)
+        return i;
     return -1;
+};
+
+int buscaMarca(TlistaCelular *lis, Tcelular cel)
+{
+    int i;
+    int count = 0;
+    for(i=0; i<lis->nco; i++){
+        if(strcmp(cel.marca,lis->celulares[i].marca) == 0){
+          if(count==0)
+            printf("Celulares Encontrados: \n\n");
+          mostreCelular(lis->celulares[i]);
+          count++;
+        }
+    }
+    return count;
 };
 
 int buscaGeracao(TlistaCelular *lis, Tcelular cel)
 {
-    int i;
-    for(i=0; i<lis->nco; i++)
-        if(strcmp(cel.geracao,lis->celulares[i].geracao) == 0)
-            return i;
-    return -1;
+  int i;
+  int count = 0;
+  for(i=0; i<lis->nco; i++){
+      if(strcmp(cel.geracao,lis->celulares[i].geracao) == 0){
+        if(count==0)
+          printf("Celulares Encontrados: \n\n");
+        mostreCelular(lis->celulares[i]);
+        count++;
+      }
+  }
+  return count;
 };
