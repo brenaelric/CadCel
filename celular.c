@@ -43,7 +43,7 @@ int main() {
 		switch (op) {
 		fflush(stdin);
 	case '1':
-		printf("\n\n  ****INSERIR NOVO CELULAR****\n\n");
+		printf("\n\n  **** INSERIR NOVO CELULAR ****\n\n");
 		printf("  Modelo: ");
 		scanf("%s", &cel.modelo);
 		rb = buscaModelo(&liscel, cel);
@@ -54,20 +54,28 @@ int main() {
 			fflush(stdin);
 			scanf("%s", cel.marca);
 			printf("  Processador: ");
+			fflush(stdin);
 			scanf("%s", cel.processador);
 			printf("  Memoria: ");
+			fflush(stdin);
 			scanf("%s", cel.memoria);
 			printf("  Tela: ");
+			fflush(stdin);
 			scanf("%s", cel.tela);
 			printf("  C%cmera Frontal: ", 131);
+			fflush(stdin);
 			scanf("%s", cel.cameraF);
 			printf("  C%cmera Traseira: ", 131);
+			fflush(stdin);
 			scanf("%s", cel.cameraT);
 			printf("  Gera%c%co: ", 135, 198);
+			fflush(stdin);
 			scanf("%s", cel.geracao);
 			printf("  Sistema Operacional: ");
+			fflush(stdin);
 			scanf("%s", cel.OS);
 			printf("  Pre%co: ", 135);
+			fflush(stdin);
 			scanf("%s", cel.preco);
 			while (op2 != 's' && op2 != 'S' && op2 != 'n' && op2 != 'N') {
 				printf("\n  Salvar celular? (s/n): ");
@@ -82,8 +90,8 @@ int main() {
 			}
 		}
 		op2 = 'A';
-
 		break;
+
 	case '2':
 		fflush(stdin);
 		printf("\n\n  **** REMOVER CELULAR ****\n");
@@ -102,11 +110,26 @@ int main() {
 		}
 		printf("\n\n");
 		break;
+
 	case '3':
 		fflush(stdin);
 		printf("\n\n  **** ALTERAR CELULAR ****\n");
-		alterarCelular(&liscel);
+		if(alterarCelular(&liscel))
+		{
+			while (op2 != 's' && op2 != 'S' && op2 != 'n' && op2 != 'N') {
+				printf("\n  Salvar celular? (s/n): ");
+				fflush(stdin);
+				scanf("%c", &op2 );;
+				if (op2 == 'S' || op2 == 's') {
+					alterado = 1;
+					printf("\n\n  **** Celular Adicionado ****\n\n");
+				} else if (op2 != 'N' && op2 != 'n')
+					printf("\n\n  **** Pressione S ou N ****\n\n");
+			}
+		}
+		op2 = 'A';
 		break;
+
 	case '4':
 		qsort(liscel.celulares, liscel.nco, sizeof(Tcelular), ordenaPreco);
 		mostralistaCelular(&liscel);
@@ -133,14 +156,6 @@ int main() {
 		if (rb == 0)
 			printf("\n  **** Marca n%co encontrada ****\n", 198);
 		break;
-		// if(rb < 0)
-		// else
-		// {
-		//     printf("Celulares Encontrados: \n");
-		//            liscel.celulares[rb].marca;
-		// }
-		// printf("\n\n");
-		// break;
 
 	case '8':
 		printf("\n\n  **** BUSCAR Celular pela Gera%c%co ****\n", 135, 198);
@@ -150,17 +165,6 @@ int main() {
 		rb = buscaGeracao(&liscel, cel);
 		if (rb == 0)
 			printf("\n  **** Geracao n%co existe ****\n", 198);
-		break;
-		//  rb =
-		//  if(rb < 0)
-		//      printf("\n  **** Gera%c%co N%co Existe ****\n", 135, 198, 198);
-		//  else
-		//  {
-		//      printf("Celulares Encontrados: \n");
-		//             liscel.celulares[rb].geracao;
-		//  }
-		//  printf("\n\n");
-		//
 		break;
 		}
 	}

@@ -25,7 +25,7 @@ struct listaCelular {
 typedef struct listaCelular TlistaCelular;
 
 void mostreCelular(Tcelular cel) {
-	printf("Chave: %d \n", cel.chave);
+	//printf("Chave: %d \n", cel.chave);
 	printf("Marca: %s \n", cel.marca);
 	printf("Modelo: %s \n", cel.modelo);
 	printf("Processador: %s \n", cel.processador);
@@ -69,8 +69,7 @@ Tcelular removeCelular(TlistaCelular *lis, int ind) {
 }
 ;
 
-void alterarCelular(TlistaCelular *lis) {
-	//int num;
+int alterarCelular(TlistaCelular *lis) {
 	char resp;
 	do {
 		printf("Modelo que deseja alterar: \n");
@@ -84,8 +83,9 @@ void alterarCelular(TlistaCelular *lis) {
 			return;
 		} else {
 			cel = lis->celulares[i];
-			mostreCelular(cel);
-			printf("\n\nEscolha a opcao que deseja modificar\n\n");
+			Tcelular *c2 = &lis->celulares[i];
+			mostreCelular(*c2);
+			printf("\n\n Escolha a opcao que deseja modificar \n\n");
 			printf("  A - Marca: \n");
 			printf("  B - Modelo: \n");
 			printf("  C - Processador: \n");
@@ -96,52 +96,55 @@ void alterarCelular(TlistaCelular *lis) {
 			printf("  H - Geracao: \n");
 			printf("  I - Sistema Operacional: \n");
 			printf("  J - Preco: \n");
-			printf("DIGITE SUA OPÇÃO: ");
+			printf("	K - Cancelar Edicao: \n");
+			printf("DIGITE SUA OPCAO: \n");
 			fflush(stdin);
-			resp = getchar();
+			scanf("%c", &resp);
 
 			switch (resp) {
 			case 'A':
 				printf("Nova marca: \n");
-				scanf("%s", cel.marca);
-				break;
+				scanf("%s", c2->marca);
+				return 1;
 			case 'B':
 				printf("Novo modelo: \n");
-				scanf("%s", cel.modelo);
+				scanf("%s", c2->modelo);
 				return;
-				break;
+				return 1;
 			case 'C':
 				printf("Novo Processador: \n");
-				scanf("%s", cel.processador);
-				break;
+				scanf("%s", c2->processador);
+				return 1;
 			case 'D':
 				printf("Nova memoria: \n");
-				scanf("%s", cel.memoria);
-				break;
+				scanf("%s", c2->memoria);
+				return 1;
 			case 'E':
 				printf("Nova tela: \n");
-				scanf("%s", cel.tela);
-				break;
+				scanf("%s", c2->tela);
+				return 1;
 			case 'F':
 				printf("Nova camera frontal: \n");
-				scanf("%s", cel.cameraF);
-				break;
+				scanf("%s", c2->cameraF);
+				return 1;
 			case 'G':
 				printf("Nova camera traseira: \n");
-				scanf("%s", cel.cameraT);
-				break;
+				scanf("%s", c2->cameraT);
+				return 1;
 			case 'H':
 				printf("Nova geracao: \n");
-				scanf("%s", cel.geracao);
-				break;
+				scanf("%s", c2->geracao);
+				return 1;
 			case 'I':
 				printf("Novo sistema operacional: \n");
-				scanf("%s", cel.OS);
-				break;
+				scanf("%s", c2->OS);
+				return 1;
 			case 'J':
 				printf("Novo preco: \n");
-				scanf("%s", cel.preco);
-				break;
+				scanf("%s", c2->preco);
+				return 1;
+			case 'K':
+				return 0;
 			default:
 				printf("Opcao invalida, digite novamente.\n\n");
 			};
